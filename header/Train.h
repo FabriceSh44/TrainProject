@@ -10,6 +10,8 @@
 
 #include <string>
 #include <iostream>
+#include <chrono>
+#include <thread>
 
 class Train{
 public:
@@ -38,8 +40,5 @@ private:
 	double _speed;
 	int _cargoSize;
 };
-
-
-
 
 #endif /* HEADER_TRAIN_H_ */

@@ -30,9 +30,11 @@ void StartTrain(Train train)
 
 void RailRoad::StartTrains() {
 
+
 	for(Train train : this->_trains)
 	{
-		std::thread t(StartTrain,train);
+		//std::thread t(StartTrain,train);
+		std::cout<<train.getName()<<std::endl;
 	}
 
 	std::this_thread::sleep_for (std::chrono::seconds(5));

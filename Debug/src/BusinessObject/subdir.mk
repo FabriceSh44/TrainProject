@@ -23,7 +23,7 @@ CPP_DEPS += \
 src/BusinessObject/%.o: ../src/BusinessObject/%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: Cross G++ Compiler'
-	g++ -std=c++0x -I"/Users/fabriceedon/Dev/Cpp/TrainProject/contrib" -I"/Users/fabriceedon/Dev/Cpp/TrainProject/header" -O0 -g3 -Wall -Wextra -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+	g++ -std=c++0x -I"/Users/fabriceedon/Dev/Cpp/TrainProject/header" -I"/Users/fabriceedon/Dev/Cpp/TrainProject/contrib" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

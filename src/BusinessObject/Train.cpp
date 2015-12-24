@@ -17,4 +17,5 @@ Train::Train(std::string name, int cargoSize, int startingPoint, double speed){
 
 void Train::Start() {
 	std::cout << this->_name<< " started"<<std::endl;
+	//std::this_thread::sleep_for (std::chrono::seconds(5));
 }
