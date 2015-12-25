@@ -8,7 +8,7 @@
 #include "Train.h"
 
 
-Train::Train(std::string name, int cargoSize, int startingPoint, double speed){
+Train::Train(std::string name, int cargoSize, int startingPoint, int speed){
 	this->_name = name;
 	this->_cargoSize = cargoSize;
 	this->_adress = startingPoint;
@@ -16,6 +16,10 @@ Train::Train(std::string name, int cargoSize, int startingPoint, double speed){
 }
 
 void Train::Start() {
-	std::cout << this->_name<< " started"<<std::endl;
-	std::this_thread::sleep_for (std::chrono::seconds(5));
+	while(true)
+	{
+		std::this_thread::sleep_for (std::chrono::seconds(1));
+		this->_adress += this->_speed;
+		std::cout << this->_name<< " is at "<<this->_adress<<"."<< std::endl;
+	}
 }

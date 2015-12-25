@@ -15,7 +15,7 @@
 
 class Train{
 public:
-	Train(std::string name, int cargoSize, int startingPoint, double speed);
+	Train(std::string name, int cargoSize, int startingPoint, int speed);
 	void Start();
 
 	int getAdress() const {
@@ -30,14 +30,14 @@ public:
 		return _name;
 	}
 
-	double getSpeed() const {
+	int getSpeed() const {
 		return _speed;
 	}
 
 private:
 	std::string _name;
 	int _adress;
-	double _speed;
+	int _speed;
 	int _cargoSize;
 };
 

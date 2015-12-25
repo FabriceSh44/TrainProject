@@ -30,16 +30,19 @@ void StartTrain(Train train)
 
 void RailRoad::StartTrains() {
 
+	std::vector<std::thread *> thread_vector;
 
 	for(Train train : this->_trains)
 	{
-		std::thread t(StartTrain,train);
-		std::cout<<train.getName()<<std::endl;
+		thread_vector.push_back(new std::thread(StartTrain,train));
 	}
 
-	std::this_thread::sleep_for (std::chrono::seconds(5));
-	std::cout<<"test"<<std::endl;
-
+	for(std::thread* t : thread_vector)
+	{
+		t->join();
+		delete t;
+	}
+	std::cout<<"Exit RailRoad"<<std::endl;
 
 	return;
 }

@@ -2,7 +2,6 @@
 #include "Main.h"
 
 int main(int argc, char **argv) {
-	const int NB_TRAIN_STATION = 2;
 	RailRoad* railRoad = new RailRoad(100);
 	//railRoad->GenerateTrainStation("Station 1", 0);
 	//railRoad->GenerateTrainStation("Station 2", 50);
