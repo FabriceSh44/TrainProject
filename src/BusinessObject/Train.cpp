@@ -14,12 +14,14 @@ Train::Train(std::string name, int cargoSize, int startingPoint, int speed){
 	this->_adress = startingPoint;
 	this->_speed = speed;
 }
-
+std::mutex train_output_lock;
 void Train::Start() {
 	while(true)
 	{
+		train_output_lock.lock();
 		std::this_thread::sleep_for (std::chrono::seconds(1));
 		this->_adress += this->_speed;
 		std::cout << this->_name<< " is at "<<this->_adress<<"."<< std::endl;
+		train_output_lock.unlock();
 	}
 }
