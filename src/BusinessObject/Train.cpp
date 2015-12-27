@@ -18,7 +18,7 @@ void Train::Start() {
 	while (true) {
 		std::this_thread::sleep_for(std::chrono::seconds(1));
 		railRoad_access_lock.lock();
-		this->_adress = _railRoad.RequestMoveTo(this->_adress + this->_speed);
+		this->_adress = _railRoad.RequestMoveTo(this->_adress, this->_speed);
 		std::cout << this->_name << " is at " << this->_adress << "."
 				<< std::endl;
 		railRoad_access_lock.unlock();

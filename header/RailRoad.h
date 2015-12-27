@@ -22,8 +22,9 @@ public:
 	RailRoad(int distance);
 	void GenerateTrainStation(std::string name, int adress);
 	void GenerateTrain(std::string name, int adress, double speed);
+
 	void StartTrains();
-	int RequestMoveTo(int adress);
+	int RequestMoveTo(int startAdress, int speed);
 
 	int getDistance() const {
 		return _distance;

@@ -44,15 +44,25 @@ void RailRoad::StartTrains() {
 }
 
 int RailRoad::RequestMoveTo(int startAdress, int speed) {
-	return this->GetFreeAdress(startAdress % this->_distance);
+	int finalAdress = startAdress;
+	int curAdress = startAdress;
+	while (speed-- > 0) {
+		curAdress = (curAdress + 1) % this->_distance;
+		bool oneTrainIsHere = false;
+		for (Train train : this->_trains) {
+			if (curAdress == train.getAdress()) {
+				oneTrainIsHere = true;
+				break;
+			}
+		}
+		if (!oneTrainIsHere) {
+			finalAdress = curAdress;
+		}
+	}
+	return finalAdress;
 }
 
 int RailRoad::GetFreeAdress(int adress) {
-	for (Train train : this->_trains) {
-		if (adress == train.getAdress()) {
-			adress = (adress - 1) % this->_distance;
-			return GetFreeAdress(adress);
-		}
-	}
+
 	return adress;
 }
