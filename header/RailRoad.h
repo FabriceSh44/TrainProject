@@ -15,7 +15,7 @@
 
 #include "Train.h"
 #include "TrainStation.h"
-
+class Train;
 class RailRoad {
 public:
 
@@ -23,18 +23,17 @@ public:
 	void GenerateTrainStation(std::string name, int adress);
 	void GenerateTrain(std::string name, int adress, double speed);
 	void StartTrains();
+	int RequestMoveTo(int adress);
 
 	int getDistance() const {
-		return distance;
+		return _distance;
 	}
 
 private:
-	int distance;
+	int _distance;
 	std::vector<TrainStation> _trainStations;
 	std::vector<Train> _trains;
+	int GetFreeAdress(int adress);
 };
-
-
-
 
 #endif /* HEADER_RAILROAD_H_ */

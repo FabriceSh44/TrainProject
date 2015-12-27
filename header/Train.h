@@ -13,9 +13,13 @@
 #include <chrono>
 #include <thread>
 
+#include "RailRoad.h"
+
+class RailRoad;
 class Train{
 public:
-	Train(std::string name, int cargoSize, int startingPoint, int speed);
+	Train(std::string name, int cargoSize, int startingPoint, int speed, RailRoad& railRoad);
+
 	void Start();
 
 	int getAdress() const {
@@ -39,6 +43,7 @@ private:
 	int _adress;
 	int _speed;
 	int _cargoSize;
+	RailRoad& _railRoad;
 };
 
 #endif /* HEADER_TRAIN_H_ */

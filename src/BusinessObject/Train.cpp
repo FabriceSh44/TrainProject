@@ -7,21 +7,20 @@
 
 #include "Train.h"
 
-
-Train::Train(std::string name, int cargoSize, int startingPoint, int speed){
-	this->_name = name;
-	this->_cargoSize = cargoSize;
-	this->_adress = startingPoint;
-	this->_speed = speed;
+Train::Train(std::string name, int cargoSize, int startingPoint, int speed,
+		RailRoad& railRoad) :
+		_name(name), _adress(startingPoint), _speed(
+				speed), _cargoSize(cargoSize), _railRoad(railRoad) {
 }
-std::mutex train_output_lock;
+
+std::mutex railRoad_access_lock;
 void Train::Start() {
-	while(true)
-	{
-		train_output_lock.lock();
-		std::this_thread::sleep_for (std::chrono::seconds(1));
-		this->_adress += this->_speed;
-		std::cout << this->_name<< " is at "<<this->_adress<<"."<< std::endl;
-		train_output_lock.unlock();
+	while (true) {
+		std::this_thread::sleep_for(std::chrono::seconds(1));
+		railRoad_access_lock.lock();
+		this->_adress = _railRoad.RequestMoveTo(this->_adress + this->_speed);
+		std::cout << this->_name << " is at " << this->_adress << "."
+				<< std::endl;
+		railRoad_access_lock.unlock();
 	}
 }
