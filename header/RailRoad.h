@@ -32,8 +32,8 @@ public:
 
 private:
 	int _distance;
-	std::vector<TrainStation> _trainStations;
-	std::vector<Train> _trains;
+	std::vector<TrainStation*> _trainStations;
+	std::vector<Train*> _trains;
 	int GetFreeAdress(int adress);
 };
 

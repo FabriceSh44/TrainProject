@@ -11,26 +11,27 @@ RailRoad::RailRoad(int distance) {
 }
 
 void RailRoad::GenerateTrainStation(std::string name, int adress) {
-	TrainStation trainStation = TrainStation(name, adress);
-	this->_trainStations.push_back(trainStation);
+	auto pointerOnTrain = new TrainStation(name, adress);
+	this->_trainStations.push_back(pointerOnTrain);
 	return;
 }
 
 void RailRoad::GenerateTrain(std::string name, int adress, double speed) {
-	Train train = Train(name, 50, adress, speed, *this);
-	this->_trains.push_back(train);
+	auto pointerOnTrain = new Train(name, 50, adress, speed, *this);
+	this->_trains.push_back(pointerOnTrain);
 	return;
 }
 
-void StartTrain(Train train) {
-	train.Start();
+void StartTrain(Train* train) {
+	train->Start();
 }
 
 void RailRoad::StartTrains() {
 
 	std::vector<std::thread *> thread_vector;
 
-	for (Train train : this->_trains) {
+	for (Train* train : this->_trains) {
+		std::cout<< train->getName() <<std::endl;
 		thread_vector.push_back(new std::thread(StartTrain, train));
 	}
 
@@ -44,25 +45,17 @@ void RailRoad::StartTrains() {
 }
 
 int RailRoad::RequestMoveTo(int startAdress, int speed) {
-	int finalAdress = startAdress;
+	int precAdress = startAdress;
 	int curAdress = startAdress;
 	while (speed-- > 0) {
+		precAdress = curAdress;
 		curAdress = (curAdress + 1) % this->_distance;
-		bool oneTrainIsHere = false;
-		for (Train train : this->_trains) {
-			if (curAdress == train.getAdress()) {
-				oneTrainIsHere = true;
-				break;
+		for (Train* train : this->_trains) {
+			if (curAdress == train->getAdress()) {
+				std::cout<< "Train \"" << train->getName() << "\" is already at " << curAdress<< std::endl;
+				return precAdress;
 			}
 		}
-		if (!oneTrainIsHere) {
-			finalAdress = curAdress;
-		}
 	}
-	return finalAdress;
-}
-
-int RailRoad::GetFreeAdress(int adress) {
-
-	return adress;
+	return curAdress;
 }
