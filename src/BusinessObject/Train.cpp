@@ -16,9 +16,9 @@ Train::Train(std::string name, int cargoSize, int startingPoint, int speed,
 std::mutex railRoad_access_lock;
 void Train::Start() {
 	while (true) {
-		std::this_thread::sleep_for(std::chrono::seconds(1));
+		std::this_thread::sleep_for(std::chrono::duration<double>(1/(double)this->_speed));
 		railRoad_access_lock.lock();
-		this->_adress = _railRoad.RequestMoveTo(this->_adress, this->_speed);
+		this->_adress = _railRoad.RequestMoveTo(this->_adress, 1);
 		std::cout << this->_name << " is at " << this->_adress << "."
 				<< std::endl;
 		railRoad_access_lock.unlock();
