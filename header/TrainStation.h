@@ -6,8 +6,18 @@ class TrainStation{
 public:
 	TrainStation(std::string name, int adress);
 	~TrainStation();
+
+	const int getAdress() const {
+		return Adress;
+	}
+
+	const std::string& getName() const {
+		return Name;
+	}
+
+private:
 	std::string Name;
-	std::string Adress;
+	int Adress;
 };
 
 #endif /* TRAINSTATION_H_ */

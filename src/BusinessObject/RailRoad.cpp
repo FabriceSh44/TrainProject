@@ -31,7 +31,7 @@ void RailRoad::StartTrains() {
 	std::vector<std::thread *> thread_vector;
 
 	for (Train* train : this->_trains) {
-		std::cout<< train->getName() <<std::endl;
+		std::cout << train->getName() << std::endl;
 		thread_vector.push_back(new std::thread(StartTrain, train));
 	}
 
@@ -50,9 +50,17 @@ int RailRoad::RequestMoveTo(int startAdress, int speed) {
 	while (speed-- > 0) {
 		precAdress = curAdress;
 		curAdress = (curAdress + 1) % this->_distance;
+		for (TrainStation* trainStation : this->_trainStations) {
+			if (curAdress == trainStation->getAdress()) {
+				std::cout << "Arrived at train station "
+						<< trainStation->getName() << std::endl;
+				return curAdress;
+			}
+		}
 		for (Train* train : this->_trains) {
 			if (curAdress == train->getAdress()) {
-				std::cout<< "Train \"" << train->getName() << "\" is already at " << curAdress<< std::endl;
+				std::cout << "Train \"" << train->getName()
+						<< "\" is already at " << curAdress << std::endl;
 				return precAdress;
 			}
 		}
