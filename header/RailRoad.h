@@ -22,7 +22,7 @@ public:
 	RailRoad(int distance);
 	void GenerateTrainStation(std::string name, int adress);
 	void GenerateTrain(std::string name, int adress, double speed);
-
+	void OpenTrainStations();
 	void StartTrains();
 	int RequestMoveTo(int startAdress, int speed);
 

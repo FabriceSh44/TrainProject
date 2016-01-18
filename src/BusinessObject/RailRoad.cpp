@@ -26,6 +26,10 @@ void StartTrain(Train* train) {
 	train->Start();
 }
 
+void OpenTrainStation(TrainStation* trainStation) {
+	trainStation->Open();
+}
+
 void RailRoad::StartTrains() {
 
 	std::vector<std::thread *> thread_vector;
@@ -42,6 +46,12 @@ void RailRoad::StartTrains() {
 	std::cout << "Exit RailRoad" << std::endl;
 
 	return;
+}
+
+void RailRoad::OpenTrainStations() {
+	for (TrainStation* trainStation : this->_trainStations) {
+		trainStation->Open();
+	}
 }
 
 int RailRoad::RequestMoveTo(int startAdress, int speed) {

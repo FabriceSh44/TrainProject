@@ -7,6 +7,7 @@ int main(int argc, char **argv) {
 	railRoad->GenerateTrainStation("Station 2", 50);
 	railRoad->GenerateTrain("Slow train", 0, 1);
 	railRoad->GenerateTrain("Fast train", 3, 2);
+	railRoad->OpenTrainStations();
 	railRoad->StartTrains();
 
 }
