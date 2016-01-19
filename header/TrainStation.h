@@ -20,8 +20,8 @@ public:
 
 private:
 	std::string _name;
-	std::queue<Package> _packageToSendQueue;
-	std::queue<Package> _packageReceivedQueue;
+	std::queue<Package>* _packageToSendQueue;
+	std::queue<Package>* _packageReceivedQueue;
 	int _adress;
 };
 
