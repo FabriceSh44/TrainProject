@@ -3,6 +3,10 @@
 #include "package.h"
 #include <string>
 #include <queue>
+#include <thread>
+#include <iostream>
+
+using namespace std;
 
 class TrainStation{
 public:
@@ -22,7 +26,12 @@ private:
 	std::string _name;
 	std::queue<Package>* _packageToSendQueue;
 	std::queue<Package>* _packageReceivedQueue;
+	std::thread* retrievalThread;
+	std::thread* postThread;
 	int _adress;
+	void StartToSendCounter();
+	void StartClientCollectionCounter();
+
 };
 
 #endif /* TRAINSTATION_H_ */
